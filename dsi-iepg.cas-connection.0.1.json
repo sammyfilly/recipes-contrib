@@ -1,0 +1,66 @@
+{
+    "manifests": {
+        "dsi-iepg/cas-connection": {
+            "manifest": {
+                "bundles": {
+                    "Iepg\\Bundle\\Cas\\CasConnectionBundle": [
+                        "all"
+                    ]
+                },
+                "copy-from-recipe": {
+                    "config/": "%CONFIG_DIR%/"
+                },
+                "env": {
+                    "#1": "#### Parameters for CAS connection ###",
+                    "CAS_HOST": "cas-adresse.com",
+                    "#2": "# This value is optional",
+                    "#3": "# If it's empty the path will the base url",
+                    "#4": "# example: Scheme://HttpHost+BasePath",
+                    "CAS_PATH": "",
+                    "#5": "# This value is optional",
+                    "#6": "# If it's empty the port will 443",
+                    "CAS_PORT": "",
+                    "#7": "# This value is optional",
+                    "#8": "# if it's 'false' you don't use ceretificat",
+                    "#9": "# THIS SETTING IS NOT RECOMMENDED FOR PRODUCTION!",
+                    "CAS_CA": "false",
+                    "CAS_CA_PATH": "",
+                    "#10": "# this value is optional. You can custome the NAME of the dispatcher route",
+                    "#11": "# Where does the user go according to his role ",
+                    "#12": "# The default value is 'cas_dispatcher'",
+                    "CAS_DISPATCHER_NAME": "",
+                    "#13": "#### end of Cas-connection ####."
+                }
+            },
+            "files": {
+                "config/packages/cas_connection.yaml": {
+                    "contents": [
+                        "cas_connection:",
+                        "    cas_host: \"%env(CAS_HOST)%\"",
+                        "    cas_path: \"%env(CAS_PATH)%\"",
+                        "    cas_port: \"%env(int:CAS_PORT)%\"",
+                        "    cas_ca: \"%env(bool:CAS_CA)%\"",
+                        "    cas_ca_path: \"%env(CAS_CA_PATH)%\"",
+                        "    cas_dispatcher_name: \"%env(CAS_DISPATCHER_NAME)%\"",
+                        "",
+                        "twig:",
+                        "    paths:",
+                        "        \"%kernel.project_dir%/vendor/dsi-iepg/cas-connection/src/Resources/views\": cas_connection",
+                        ""
+                    ],
+                    "executable": false
+                },
+                "config/routes/cas_connection.yaml": {
+                    "contents": [
+                        "cas_connection:",
+                        "    resource: '@CasConnectionBundle/Resources/config/routes.yaml'",
+                        "    prefix: /cas-connection",
+                        ""
+                    ],
+                    "executable": false
+                }
+            },
+            "ref": "92f9435061191d809d2e19b117dafaf62ef97b7b"
+        }
+    }
+}
