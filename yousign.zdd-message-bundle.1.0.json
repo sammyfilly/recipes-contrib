@@ -1,0 +1,29 @@
+{
+    "manifests": {
+        "yousign/zdd-message-bundle": {
+            "manifest": {
+                "bundles": {
+                    "Yousign\\ZddMessageBundle\\ZddMessageBundle": [
+                        "all"
+                    ]
+                },
+                "copy-from-recipe": {
+                    "config/": "%CONFIG_DIR%/"
+                }
+            },
+            "files": {
+                "config/zdd_message.yaml": {
+                    "contents": [
+                        "# https://github.com/Yousign/zdd-message-bundle",
+                        "zdd_message:",
+                        "    # The directory where the serialized messages will be stored (default: '%kernel.project_dir%'/var/zdd-message)",
+                        "    # serialized_messages_dir: 'var/serialized_messages'",
+                        ""
+                    ],
+                    "executable": false
+                }
+            },
+            "ref": "584ecf1b517471f0818c152ede78e5cd5bd28285"
+        }
+    }
+}
