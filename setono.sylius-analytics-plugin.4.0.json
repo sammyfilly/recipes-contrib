@@ -1,0 +1,44 @@
+{
+    "manifests": {
+        "setono/sylius-analytics-plugin": {
+            "manifest": {
+                "bundles": {
+                    "Setono\\SyliusAnalyticsPlugin\\SetonoSyliusAnalyticsPlugin": [
+                        "all"
+                    ]
+                },
+                "copy-from-recipe": {
+                    "config/": "%CONFIG_DIR%/"
+                },
+                "post-install-output": [
+                    "Remember to move the plugin above the grid bundle."
+                ]
+            },
+            "files": {
+                "config/packages/setono_sylius_analytics.yaml": {
+                    "contents": [
+                        "imports:",
+                        "    - { resource: \"@SetonoSyliusAnalyticsPlugin/Resources/config/app/config.yaml\" }",
+                        "",
+                        "setono_google_analytics:",
+                        "    gtag: null",
+                        "",
+                        "    # If you want to use tag manager instead of gtag, just remove the line above and remove the comment below",
+                        "    # tag_manager: null",
+                        ""
+                    ],
+                    "executable": false
+                },
+                "config/routes/setono_sylius_analytics.yaml": {
+                    "contents": [
+                        "setono_sylius_analytics:",
+                        "    resource: \"@SetonoSyliusAnalyticsPlugin/Resources/config/routes.yaml\"",
+                        ""
+                    ],
+                    "executable": false
+                }
+            },
+            "ref": "e7471b9086bfadba27f4c35930a49a48a820bb36"
+        }
+    }
+}
